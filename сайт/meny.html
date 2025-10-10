@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Меню - СУШИSELL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="meny.css">
+</head>
+<body>
+  <header>
+    
+    <a class="logoa" href="производ практ.html">
+      <div class="logo">СУШИ<span>SELL</span></div>
+    </a>
+    <nav>
+      <a href="meny.html" class="active">Меню</a>
+      <a href="prof.html">Профиль</a>
+      <a href="korz.html">Корзина <span class="cart-count" id="header-cart-count">0</span></a>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <div class="menu-header">
+      <h1>Меню</h1>
+      <p>Выберите понравившиеся блюда</p>
+    </div>
+    
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Поиск по меню...">
+    </div>
+    
+    
+    <div class="category-tabs">
+      <div class="category-tab active" data-category="all">Все</div>
+      <div class="category-tab" data-category="sets">Наборы</div>
+      <div class="category-tab" data-category="cold">Холодные</div>
+      <div class="category-tab" data-category="hot">Горячие</div>
+      <div class="category-tab" data-category="drinks">Напитки</div>
+    </div>
+    
+    <div class="menu-section">
+      <h2 class="section-title">Наборы</h2>
+      <div class="menu-items" id="sets-container">
+        <!-- Набор 1 -->
+        <div class="menu-item" data-category="sets" data-name="Время" data-first-letter="В" data-price="1299" data-id="1">
+          <img src="https://sushisell.goulash.tech/__/images/menuProduct/68305c29e988e.webp" alt="Время" class="item-image">
+          <div class="item-info">
+            <h3 class="item-name">Время</h3>
+            <p class="item-description">Набор из 24 кусочков: 6 филадельфий, 6 калифорний, 6 цезарь маки, 6 сяке маки</p>
+            <div class="item-bottom">
+              <span class="item-price">1 299 ₽</span>
+              <button class="add-to-cart">В корзину</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Набор 2 -->
+        <div class="menu-item" data-category="sets" data-name="Друг/был" data-first-letter="Д" data-price="1899" data-id="2">
+          <img src="https://sushisell.goulash.tech/__/images/menuProduct/680222ac78de3_w900_jpg.webp" alt="Друг/был" class="item-image">
+          <div class="item-info">
+            <h3 class="item-name">Друг/был</h3>
+            <p class="item-description">Набор из 36 кусочков: 8 филадельфий, 8 калифорний, 8 цезарь маки, 6 сяке маки, 6 унаги маки</p>
+            <div class="item-bottom">
+              <span class="item-price">1 899 ₽</span>
+              <button class="add-to-cart">В корзину</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Набор 3 -->
+        <div class="menu-item" data-category="sets" data-name="Тр. 12347" data-first-letter="Т" data-price="999" data-id="3">
+          <img src="https://sushisell.goulash.tech/__/images/menuProduct/6826e7b3c5c56.webp" alt="Тр. 12347" class="item-image">
+          <div class="item-info">
+            <h3 class="item-name">Мега сет</h3>
+            <p class="item-description">Набор из 18 кусочков: 6 филадельфий, 6 калифорний, 6 цезарь маки</p>
+            <div class="item-bottom">
+              <span class="item-price">7999 ₽</span>
+              <button class="add-to-cart">В корзину</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-section">
+      <h2 class="section-title">Холодные</h2>
+      <div class="menu-items" id="cold-container">
+        <!-- Холодное 1 -->
+        <div class="menu-item" data-category="cold" data-name="Крат./был" data-first-letter="К" data-price="349" data-id="4">
+          <img src="https://sushisell.goulash.tech/__/images/menuProduct/6827101114102.webp" alt="Крат./был" class="item-image">
+          <div class="item-info">
+            <h3 class="item-name">Филадельфия Маки</h3>
+            <p class="item-description">Ролл с лососем и сливочным сыром</p>
+            <div class="item-bottom">
+              <span class="item-price">349 ₽</span>
+              <button class="add-to-cart">В корзину</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Холодное 2 -->
+        <div class="menu-item" data-category="cold" data-name="Тр. 12347" data-first-letter="Т" data-price="399" data-id="5">
+          <img src="https://sushisell.goulash.tech/__/images/menuProduct/6827101114102.webp" alt="Тр. 12347" class="item-image">
+          <div class="item-info">
+            <h3 class="item-name">Филадельфия</h3>
+            <p class="item-description">Ролл с угрем, авокадо и сливочным сыром</p>
+            <div class="item-bottom">
+              <span class="item-price">399 ₽</span>
+              <button class="add-to-cart">В корзину</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-section">
+      <h2 class="section-title">Напитки</h2>
+      <div class="menu-items" id="drinks-container">
+        <!-- Напиток 1 -->
+        <div class="menu-item" data-category="drinks" data-name="Латте Бабл Ти" data-first-letter="Л" data-price="199" data-id="6">
+          <img src="https://sushisell.goulash.tech/__/images/menuProduct/683408233a799.webp" alt="Латте Бабл Ти" class="item-image">
+          <div class="item-info">
+            <h3 class="item-name">Латте Бабл Ти</h3>
+            <p class="item-description">Чай с молоком, жемчужинами тапиоки и сахарным сиропом</p>
+            <div class="item-bottom">
+              <span class="item-price">199 ₽</span>
+              <button class="add-to-cart">В корзину</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Напиток 2 -->
+        <div class="menu-item" data-category="drinks" data-name="Мохито" data-first-letter="М" data-price="179" data-id="7">
+          <img src="https://sushisell.goulash.tech/__/images/menuProduct/683408233a799.webp" alt="Мохито" class="item-image">
+          <div class="item-info">
+            <h3 class="item-name">Бабл ти Клубника</h3>
+            <p class="item-description">Освежающий напиток с клубникой</p>
+            <div class="item-bottom">
+              <span class="item-price">179 ₽</span>
+              <button class="add-to-cart">В корзину</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-product-name">Латте Бабл Ти</h3>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img src="https://сушиселл.рф/__/images/storage/6835309725bd3_jpg.webp" alt="Латте Бабл Ти" class="modal-image" id="modal-product-image">
+        
+        <p class="modal-description" id="modal-product-description">
+          Чай с молоком, хлопами и волокнами, охраняемыми жарким космосом, строго содержащийся в наших стаканах!
+        </p>
+        
+        <div class="modal-composition">
+          <h4 class="composition-title">Состав</h4>
+          <table class="composition-table">
+            <tr>
+              <th>информация о калорийности</th>
+              <th>информация о калорийности</th>
+              <th>информация о калорийности</th>
+              <th>информация о калорийности</th>
+              <th>информация о калорийности</th>
+            </tr>
+            <tr>
+              <td>информация о калорийности</td>
+             <td>информация о калорийности</td>
+              <td>информация о калорийности</td>
+               <td>информация о калорийности</td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="reviews">
+          <div class="reviews-header">
+            <h4 class="reviews-title">Отзывы</h4>
+            <span class="reviews-count">29 оценок</span>
+          </div>
+          <p>Информация о товаре</p>
+          <p class="review-time">Оценено 14:07</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span class="modal-price" id="modal-product-price">199 ₽</span>
+        <button class="modal-add">Добавить в корзину</button>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="logo">СУШИ<span>SELL</span></div>
+  <p>Единый номер службы доставки: +7&nbsp;(391)&nbsp;228‑71‑01</p>
+  <p class="store-links">
+    
+    <img src="оба.jpg" alt="Google Play" style="width: 300px;">
+  </p>
+</footer>
+  
+  <script>
+ 
+    let cart = JSON.parse(localStorage.getItem('sushisell_cart')) || [];
+    
+  
+    function updateCartCount() {
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('header-cart-count').textContent = count;
+    }
+    
+    
+    function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
+      const existingItem = cart.find(item => item.id === productId);
+      
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.push({
+          id: productId,
+          name: productName,
+          price: productPrice,
+          image: productImage,
+          quantity: quantity
+        });
+      }
+      
+      localStorage.setItem('sushisell_cart', JSON.stringify(cart));
+      updateCartCount();
+      showAddedToCartModal(productName);
+    }
+    
+  
+    function showAddedToCartModal(productName) {
+      alert(`${productName} добавлен в корзину!`);
+    }
+    
+   
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const item = this.closest('.menu-item');
+        const productId = item.dataset.id;
+        const productName = item.dataset.name;
+        const productPrice = parseInt(item.dataset.price);
+        const productImage = item.querySelector('.item-image').src;
+        
+        addToCart(productId, productName, productPrice, productImage);
+      });
+    });
+    
+    
+    document.querySelector('.modal-add')?.addEventListener('click', function() {
+      const productId = document.getElementById('product-modal').dataset.productId;
+      const productName = document.getElementById('modal-product-name').textContent;
+      const productPrice = parseInt(document.getElementById('modal-product-price').textContent);
+      const productImage = document.getElementById('modal-product-image').src;
+      
+      addToCart(productId, productName, productPrice, productImage);
+      
+   
+      document.getElementById('product-modal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+  
+    const alphabetLetters = document.querySelectorAll('.alphabet-letter');
+    const menuItems = document.querySelectorAll('.menu-item');
+    
+    alphabetLetters.forEach(letter => {
+      letter.addEventListener('click', () => {
+        alphabetLetters.forEach(l => l.classList.remove('active'));
+        letter.classList.add('active');
+        
+        const selectedLetter = letter.textContent;
+        
+        menuItems.forEach(item => {
+          const firstLetter = item.dataset.firstLetter;
+          item.style.display = firstLetter === selectedLetter ? 'block' : 'none';
+        });
+      });
+    });
+    
+   
+    document.querySelectorAll('.category-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        alphabetLetters.forEach(l => l.classList.remove('active'));
+        menuItems.forEach(item => item.style.display = 'block');
+      });
+    });
+    
+    
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    
+    categoryTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        categoryTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const selectedCategory = tab.dataset.category;
+        
+        menuItems.forEach(item => {
+          const itemCategory = item.dataset.category;
+          item.style.display = (selectedCategory === 'all' || itemCategory === selectedCategory) ? 'block' : 'none';
+        });
+      });
+    });
+    
+   
+    const searchInput = document.querySelector('.search-input');
+    
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      
+      menuItems.forEach(item => {
+        const itemName = item.dataset.name.toLowerCase();
+        item.style.display = itemName.includes(searchTerm) ? 'block' : 'none';
+      });
+    });
+    
+   
+    const modal = document.getElementById('product-modal');
+    const modalProductName = document.getElementById('modal-product-name');
+    const modalProductImage = document.getElementById('modal-product-image');
+    const modalProductDescription = document.getElementById('modal-product-description');
+    const modalProductPrice = document.getElementById('modal-product-price');
+    const closeModal = document.querySelector('.close-modal');
+    
+    
+    menuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const name = item.querySelector('.item-name').textContent;
+        const image = item.querySelector('.item-image').src;
+        const description = item.querySelector('.item-description').textContent;
+        const price = item.querySelector('.item-price').textContent;
+        const productId = item.dataset.id;
+        
+        modalProductName.textContent = name;
+        modalProductImage.src = image;
+        modalProductImage.alt = name;
+        modalProductDescription.textContent = description;
+        modalProductPrice.textContent = price;
+        modal.dataset.productId = productId;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+   
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+  
+    updateCartCount();
+  </script>
+</body>
+</html>

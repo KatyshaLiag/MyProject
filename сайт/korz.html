@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина - СУШИSELL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    
+    <a class="logoa" href="производ практ.html">
+      <div class="logo">СУШИ<span>SELL</span></div>
+    </a>
+    <nav>
+      <a href="meny.html">Меню</a>
+      <a href="prof.html">Профиль</a>
+      <a href="korz.html" class="active">Корзина <span class="cart-count" id="header-cart-count">0</span></a>
+    </nav>
+  </header>
+  
+  <div class="container" id="cart-page">
+    <div class="cart-container">
+      <h1 class="cart-title">Ваша корзина</h1>
+      
+      <div class="cart-items" id="cart-items-container">
+   
+      </div>
+      
+      <div class="cart-summary" id="cart-summary">
+        <div class="summary-row">
+          <span>Сумма заказа:</span>
+          <span id="order-subtotal">0 ₽</span>
+        </div>
+        <div class="summary-row">
+          <span>Доставка:</span>
+          <span>Бесплатно</span>
+        </div>
+        <div class="summary-row total">
+          <span>Итого:</span>
+          <span id="order-total">0 ₽</span>
+        </div>
+      </div>
+      
+      <button class="checkout-btn" id="checkout-btn">Оформить заказ</button>
+    </div>
+  </div>
+  
+  <div class="container hidden" id="empty-cart">
+    <div class="empty-cart">
+      <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" alt="Пустая корзина">
+      <h2>Ваша корзина пуста</h2>
+      <p>Добавьте что-нибудь из меню, чтобы сделать заказ</p>
+      <button class="back-to-menu" id="back-to-menu">Перейти в меню</button>
+    </div>
+  </div>
+  
+  <div class="container hidden" id="checkout-page">
+    <div class="checkout-container">
+      <h1 class="checkout-title">Оформление заказа</h1>
+      
+      <form id="order-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Ваше имя</label>
+          <input type="text" id="name" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone" class="form-label">Номер телефона</label>
+          <input type="tel" id="phone" class="form-input" required placeholder="+7 (___) ___-__-__">
+        </div>
+        
+        <div class="form-group">
+          <label for="address" class="form-label">Адрес доставки</label>
+          <input type="text" id="address" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="comment" class="form-label">Комментарий к заказу (необязательно)</label>
+          <textarea id="comment" class="form-input" rows="3"></textarea>
+        </div>
+        
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Сумма заказа:</span>
+            <span id="checkout-subtotal">0 ₽</span>
+          </div>
+          <div class="summary-row">
+            <span>Доставка:</span>
+            <span>Бесплатно</span>
+          </div>
+          <div class="summary-row total">
+            <span>Итого:</span>
+            <span id="checkout-total">0 ₽</span>
+          </div>
+        </div>
+        
+        <button type="submit" class="confirm-btn">Подтвердить заказ</button>
+      </form>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="logo">СУШИ<span>SELL</span></div>
+  <p>Единый номер службы доставки: +7&nbsp;(391)&nbsp;228‑71‑01</p>
+  <p class="store-links">
+    
+    <img src="оба.jpg" alt="Google Play" style="width: 300px;">
+  </p>
+</footer>
+  
+  <script>
+ 
+    let cart = JSON.parse(localStorage.getItem('sushisell_cart')) || [];
+    
+    
+    function updateCartCount() {
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('header-cart-count').textContent = count;
+      return count;
+    }
+   
+    function renderCartItems() {
+      const cartItemsContainer = document.getElementById('cart-items-container');
+      const emptyCart = document.getElementById('empty-cart');
+      const cartPage = document.getElementById('cart-page');
+      const cartSummary = document.getElementById('cart-summary');
+      
+      cartItemsContainer.innerHTML = '';
+   
+      if (cart.length === 0) {
+        cartPage.classList.add('hidden');
+        emptyCart.classList.remove('hidden');
+        cartSummary.classList.add('hidden');
+        return;
+      }
+      
+      cartPage.classList.remove('hidden');
+      emptyCart.classList.add('hidden');
+      cartSummary.classList.remove('hidden');
+      
+    
+      cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.dataset.id = item.id;
+        
+        cartItem.innerHTML = `
+          <div class="item-info">
+            <img src="${item.image}" alt="${item.name}" class="item-image">
+            <div>
+              <div class="item-name">${item.name}</div>
+            </div>
+          </div>
+          <div class="item-controls">
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">${item.quantity}</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+            <div class="item-price">${item.price * item.quantity} ₽</div>
+            <button class="remove-item">Удалить</button>
+          </div>
+        `;
+        
+        cartItemsContainer.appendChild(cartItem);
+      });
+     
+      updateCartTotals();
+      
+     
+      addCartEventListeners();
+    }
+
+    function updateCartTotals() {
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        subtotal += item.price * item.quantity;
+      });
+      
+      document.getElementById('order-subtotal').textContent = `${subtotal} ₽`;
+      document.getElementById('order-total').textContent = `${subtotal} ₽`;
+      document.getElementById('checkout-subtotal').textContent = `${subtotal} ₽`;
+      document.getElementById('checkout-total').textContent = `${subtotal} ₽`;
+    }
+    
+    function addCartEventListeners() {
+    
+      document.querySelectorAll('.quantity-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const itemElement = this.closest('.cart-item');
+          const itemId = itemElement.dataset.id;
+          const quantityElement = itemElement.querySelector('.quantity');
+          const priceElement = itemElement.querySelector('.item-price');
+          let quantity = parseInt(quantityElement.textContent);
+          
+          if (this.classList.contains('plus')) {
+            quantity++;
+          } else if (this.classList.contains('minus') && quantity > 1) {
+            quantity--;
+          }
+        
+          const item = cart.find(i => i.id === itemId);
+          if (item) {
+            item.quantity = quantity;
+            localStorage.setItem('sushisell_cart', JSON.stringify(cart));
+            
+           
+            quantityElement.textContent = quantity;
+            priceElement.textContent = `${item.price * quantity} ₽`;
+            updateCartTotals();
+            updateCartCount();
+          }
+        });
+      });
+    
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const itemId = this.closest('.cart-item').dataset.id;
+         
+          cart = cart.filter(item => item.id !== itemId);
+          localStorage.setItem('sushisell_cart', JSON.stringify(cart));
+        
+          renderCartItems();
+          updateCartCount();
+        });
+      });
+    }
+    
+    
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+      document.getElementById('cart-page').classList.add('hidden');
+      document.getElementById('checkout-page').classList.remove('hidden');
+    });
+    
+   
+    document.getElementById('back-to-menu').addEventListener('click', function() {
+      window.location.href = 'menu.html';
+    });
+    
+    
+    const phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', function(e) {
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+      e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+    });
+    
+   
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+
+      const orderData = {
+        customer: {
+          name: document.getElementById('name').value,
+          phone: document.getElementById('phone').value,
+          address: document.getElementById('address').value,
+          comment: document.getElementById('comment').value
+        },
+        items: cart,
+        total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+        date: new Date().toISOString()
+      };
+      
+ 
+      console.log('Order data:', orderData);
+      
+      cart = [];
+      localStorage.setItem('sushisell_cart', JSON.stringify(cart));
+      updateCartCount();
+      
+      alert('Ваш заказ успешно оформлен! Скоро с вами свяжется оператор для подтверждения.');
+     
+      window.location.href = 'menu.html';
+    });
+   
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+      renderCartItems();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Профиль - СУШИSELL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <header>
+    
+    <a class="logoa" href="производ практ.html">
+      <div class="logo">СУШИ<span>SELL</span></div>
+    </a>
+    <nav>
+      <a href="meny.html">Меню</a>
+      <a href="prof.html" class="active">Профиль</a>
+      <a href="korz.html">Корзина <span class="cart-count" id="header-cart-count">0</span></a>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <div class="profile-header">
+      <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Аватар" class="profile-avatar">
+      <h2 class="profile-name">Анна Петрова</h2>
+      <div class="profile-phone">+7 (912) 345-67-89</div>
+    </div>
+    
+    <div class="orders-section">
+      <h2 class="section-title">Мои заказы</h2>
+      
+     
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-title">Филадельфия маки</div>
+          <div class="order-price">629 ₽</div>
+        </div>
+        <div class="order-details">
+          <div class="order-date">Заказ от 13.06.2025</div>
+          <div class="order-status delivered">Статус: Доставлен</div>
+        </div>
+      </div>
+      
+     
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-title">Филадельфия маки</div>
+          <div class="order-price">629 ₽</div>
+        </div>
+        <div class="order-details">
+          <div class="order-date">Заказ от 13.06.2025</div>
+          <div class="order-status delivered">Статус: Доставлен</div>
+        </div>
+      </div>
+      
+     
+  
+ <footer class="footer">
+  <div class="logo">СУШИ<span>SELL</span></div>
+  <p>Единый номер службы доставки: +7&nbsp;(391)&nbsp;228‑71‑01</p>
+  <p class="store-links">
+    
+    <img src="оба.jpg" alt="Google Play" style="width: 300px;">
+  </p>
+</footer>
+  
+  <script>
+    
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('sushisell_cart')) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('header-cart-count').textContent = count;
+    }
+   
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+      
+      
+    });
+  </script>
+</body>
+</html>
