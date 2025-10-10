@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Наши работы</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+                sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .Header {
+            width: 100%;
+            height: 64px;
+            background-color: #1e1e1e;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #333;
+        }
+
+        .Header-logo-container {
+            height: 100%;
+            margin-right: 30px;
+        }
+
+        .Header-logo {
+            height: 100%;
+        }
+
+        .Header-nav-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-btn {
+            width: 140px;
+            height: 53px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+            font-weight: 500;
+            user-select: none;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #333;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2a2a2a;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            z-index: 10;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            color: #e0e0e0;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #f0c040;
+            margin-bottom: 40px;
+        }
+
+        h2.category-title {
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            color: #f0c040;
+            border-bottom: 2px solid #f0c040;
+            padding-bottom: 8px;
+        }
+
+        .Category-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px 32px;
+            margin-bottom: 40px;
+        }
+
+        .Card {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .Card:hover {
+            transform: scale(1.03);
+        }
+
+        .Card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .Card-description {
+            padding: 16px;
+            color: #ccc;
+            flex-grow: 1;
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .Footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            color: #b0b0b0;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .Footer-column {
+            flex: 1 1 300px;
+        }
+
+        .Footer-column h3 {
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .Footer-column p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* Кнопка "Вверх" */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background-color: #f0c040;
+            color: #121212;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-size: 24px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #d4a828;
+        }
+    </style>
+</head>
+<body>
+<header class="Header">
+    <div class="Header-logo-container">
+        <img class="Header-logo" src="./public/logo.png" alt="Логотип" />
+    </div>
+
+    <nav class="Header-nav-container">
+        <div class="dropdown">
+            <div class="dropdown-btn">Главная ▼</div>
+            <div class="dropdown-content">
+                <a href="index.html" class="dropdown-item">Главная</a>
+                <a href="our-work.html" class="dropdown-item">Наши работы</a>
+                <a href="price.html" class="dropdown-item">Цены</a>
+                <a href="team.html" class="dropdown-item">Команда</a>
+                <a href="gift.html" class="dropdown-item">Подарочный сертификат</a>
+                <a href="feetback.html" class="dropdown-item">Отзывы</a>
+                <a href="contact.html" class="dropdown-item">Контакты</a>
+                <a href="online-rec.html" class="dropdown-item">Онлайн запись</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <h1>Наши работы</h1>
+
+    <!-- Категория 1 -->
+    <section>
+        <h2 class="category-title">Категория 1: Маникюр</h2>
+        <div class="Category-container">
+            <article class="Card">
+                <img src="./public/work1.jpg" alt="Маникюр 1" />
+                <div class="Card-description">Премиум маникюр с покрытием гель-лаком и дизайном.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work2.jpg" alt="Маникюр 2" />
+                <div class="Card-description">Элегантный педикюр с натуральными оттенками.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work3.jpg" alt="Маникюр 3" />
+                <div class="Card-description">Модный дизайн ногтей с сезонными трендами.</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Категория 2 -->
+    <section>
+        <h2 class="category-title">Категория 2: Педикюр</h2>
+        <div class="Category-container">
+            <article class="Card">
+                <img src="./public/work4.jpg" alt="Педикюр 1" />
+                <div class="Card-description">Комбинированный маникюр с украшениями.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work5.jpg" alt="Педикюр 2" />
+                <div class="Card-description">Яркий дизайн ногтей с блестками.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work6.jpg" alt="Педикюр 3" />
+                <div class="Card-description">Французский маникюр с нежными оттенками.</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Категория 3 -->
+    <section>
+        <h2 class="category-title">Категория 3: Классика</h2>
+        <div class="Category-container">
+            <article class="Card">
+                <img src="./public/work7.jpg" alt="Классика 1" />
+                <div class="Card-description">Классический педикюр с ухоженными ногтями.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work8.jpg" alt="Классика 2" />
+                <div class="Card-description">Яркий летний дизайн ногтей.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work9.jpg" alt="Классика 3" />
+                <div class="Card-description">Нежный маникюр с растительными мотивами.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work9.jpg" alt="Классика 4" />
+                <div class="Card-description">Нежный маникюр с растительными мотивами.</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Категория 4 -->
+    <section>
+        <h2 class="category-title">Категория 4: Современный дизайн</h2>
+        <div class="Category-container">
+            <article class="Card">
+                <img src="./public/work10.jpg" alt="Современный 1" />
+                <div class="Card-description">Современный дизайн ногтей с абстрактными узорами.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work11.jpg" alt="Современный 2" />
+                <div class="Card-description">Яркий педикюр с геометрическими элементами.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work12.jpg" alt="Современный 3" />
+                <div class="Card-description">Элегантный маникюр с матовым покрытием.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work11.jpg" alt="Современный 4" />
+                <div class="Card-description">Яркий педикюр с геометрическими элементами.</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Категория 5 -->
+    <section>
+        <h2 class="category-title">Категория 5: Эксклюзив</h2>
+        <div class="Category-container">
+            <article class="Card">
+                <img src="./public/work13.jpg" alt="Эксклюзив 1" />
+                <div class="Card-description">Маникюр с использованием страз.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work14.jpg" alt="Эксклюзив 2" />
+                <div class="Card-description">Педикюр с яркими оттенками и блестками.</div>
+            </article>
+            <article class="Card">
+                <img src="./public/work15.jpg" alt="Эксклюзив 3" />
+                <div class="Card-description">Летний дизайн ногтей с морскими мотивами.</div>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="Footer-content">
+        <div class="Footer-column">
+            <h3>О салоне</h3>
+            <p>Мы — профессиональная команда стилистов и мастеров с большим опытом.</p>
+            <p>Предлагаем полный спектр услуг: стрижки, окрашивание, укладки, свадебные причёски и многое другое.</p>
+        </div>
+        <div class="Footer-column">
+            <h3>Контакты</h3>
+            <p>Телефон: +7 (900) 123-45-67</p>
+            <p>Email: info@salon.ru</p>
+            <p>Адрес: ул. Примерная, д. 1, Москва</p>
+            <p>Часы работы: Пн–Вс, 10:00–20:00</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Кнопка "Вверх" -->
+<button id="scrollToTopBtn" title="Наверх">↑</button>
+
+<script>
+    // Показ кнопки при прокрутке вниз
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.style.display = 'flex';
+        } else {
+            scrollToTopBtn.style.display = 'none';
+        }
+    });
+
+    // Плавный скролл наверх при клике
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>

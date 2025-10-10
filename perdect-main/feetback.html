@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Отзывы</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .Header {
+            width: 100%;
+            height: 64px;
+            background-color: #1e1e1e;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #333;
+            margin-bottom: 40px;
+        }
+
+        .Header-logo-container {
+            height: 100%;
+            margin-right: 30px;
+        }
+
+        .Header-logo {
+            height: 100%;
+        }
+
+        .Header-nav-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-btn {
+            width: 150px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #333;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2a2a2a;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            z-index: 1;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            color: #e0e0e0;
+            transition: background-color 0.3s;
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            background-color: #333;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .review {
+            background-color: #1e1e1e;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .review p {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .Footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            color: #b0b0b0;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .Footer-column {
+            flex: 1 1 300px;
+        }
+
+        .Footer-column h3 {
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .Footer-column p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<header class="Header">
+    <div class="Header-logo-container">
+        <img class="Header-logo" src="./public/logo.png" alt="Логотип" />
+    </div>
+
+    <nav class="Header-nav-container">
+        <div class="dropdown">
+            <div class="dropdown-btn">Меню ▼</div>
+            <div class="dropdown-content">
+                <a href="index.html" class="dropdown-item">Главная</a>
+                <a href="our-work.html" class="dropdown-item">Наши работы</a>
+                <a href="price.html" class="dropdown-item">Цены</a>
+                <a href="team.html" class="dropdown-item">Команда</a>
+                <a href="gift.html" class="dropdown-item">Подарочный сертификат</a>
+                <a href="feetback.html" class="dropdown-item">Отзывы</a>
+                <a href="contact.html" class="dropdown-item">Контакты</a>
+                <a href="online-rec.html" class="dropdown-item">Онлайн запись</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <h1>Отзывы наших клиентов</h1>
+
+    <div class="review">
+        <p><strong>Анна К.</strong></p>
+        <p>Очень довольна качеством стрижки и обслуживания! Вернусь снова!</p>
+    </div>
+
+    <div class="review">
+        <p><strong>Мария С.</strong></p>
+        <p>Сделала укладку и макияж — идеально! Спасибо мастерам!</p>
+    </div>
+
+    <div class="review">
+        <p><strong>Елена П.</strong></p>
+        <p>Замечательный салон, уютная атмосфера и профессиональная команда.</p>
+    </div>
+</main>
+
+<footer>
+    <div class="Footer-content">
+        <div class="Footer-column">
+            <h3>О салоне</h3>
+            <p>Мы — профессиональная команда стилистов и мастеров с большим опытом.</p>
+            <p>Предлагаем полный спектр услуг: стрижки, окрашивание, укладки, свадебные причёски и многое другое.</p>
+        </div>
+        <div class="Footer-column">
+            <h3>Контакты</h3>
+            <p>Телефон: +7 (900) 123-45-67</p>
+            <p>Email: info@salon.ru</p>
+            <p>Адрес: ул. Примерная, д. 1, Москва</p>
+            <p>Часы работы: Пн–Вс, 10:00–20:00</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

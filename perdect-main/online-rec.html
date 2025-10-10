@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Онлайн запись</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .button {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      font-weight: 600;
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    .button:hover {
+      background-color: #3d3d3d;
+    }
+
+    .button:active {
+      background-color: #1d1d1d;
+    }
+
+    .input {
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #444;
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+      margin-top: 12px;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    /* Header */
+    .Header {
+      width: 100%;
+      height: 64px;
+      background-color: #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid #333;
+      user-select: none;
+    }
+
+    .Header-logo-container {
+      height: 100%;
+      margin-right: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .Header-logo {
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .Header-nav-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    /* Dropdown menu */
+    .dropdown {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dropdown-btn {
+      background-color: #2a2a2a;
+      color: #e0e0e0;
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid transparent;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .dropdown-btn:hover,
+    .dropdown-btn.active {
+      background-color: #333;
+      border-color: #555;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #2a2a2a;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #e0e0e0;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #444;
+    }
+
+    /* Show dropdown on hover for desktop */
+    @media (hover: hover) {
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    }
+
+    /* On mobile, show dropdown on click */
+    @media (pointer: coarse) {
+      .dropdown-btn {
+        user-select: none;
+      }
+    }
+
+    /* Main content */
+    main.Online-form-page {
+      max-width: 400px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    form.Online-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form.Online-form h2 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1e1e1e;
+      padding: 40px 20px;
+      border-top: 1px solid #333;
+    }
+
+    .Footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      color: #b0b0b0;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .Footer-column {
+      flex: 1 1 300px;
+    }
+
+    .Footer-column h3 {
+      margin-bottom: 16px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .Footer-column p {
+      margin-bottom: 8px;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header class="Header">
+    <div class="Header-logo-container">
+      <img
+        class="Header-logo"
+        src="./public/logo.png"
+        alt="Логотип салона"
+      />
+    </div>
+
+    <nav class="Header-nav-container">
+      <div class="dropdown" id="dropdownMenu">
+        <div class="dropdown-btn" id="dropdownBtn">
+          Меню ▼
+        </div>
+        <div class="dropdown-content" id="dropdownContent">
+          <a href="index.html">Главная</a>
+          <a href="our-work.html">Наши работы</a>
+          <a href="price.html">Цены</a>
+          <a href="team.html">Команда</a>
+          <a href="gift.html">Подарочный сертификат</a>
+          <a href="feetback.html">Отзывы</a>
+          <a href="contact.html">Контакты</a>
+          <a href="online-rec.html">Онлайн запись</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="Online-form-page">
+    <form class="Online-form" action="">
+      <h2>Запись</h2>
+
+      <input
+        class="input"
+        type="tel"
+        placeholder="Введите свой телефон"
+        required
+      />
+
+      <input
+        class="input"
+        type="text"
+        placeholder="Введите своё имя"
+        required
+      />
+
+      <select class="input" required>
+        <option value="" disabled selected>Выберите тип услуги</option>
+        <option value="cosmetologist">Косметолог</option>
+        <option value="hairdresser">Парикмахер</option>
+        <option value="manicure">Маникюр</option>
+        <option value="pedicure">Педикюр</option>
+      </select>
+
+      <input class="input" type="date" required />
+
+      <input class="button" type="submit" value="Записаться" />
+    </form>
+  </main>
+
+  <footer>
+    <div class="Footer-content">
+      <div class="Footer-column">
+        <h3>О салоне</h3>
+        <p>Мы — профессиональная команда стилистов и мастеров с большим опытом.</p>
+        <p>
+          Предлагаем полный спектр услуг: стрижки, окрашивание, укладки,
+          свадебные причёски и многое другое.
+        </p>
+      </div>
+      <div class="Footer-column">
+        <h3>Контакты</h3>
+        <p>Телефон: +7 (900) 123-45-67</p>
+        <p>Email: info@salon.ru</p>
+        <p>Адрес: ул. Примерная, д. 1, Москва</p>
+        <p>Часы работы: Пн–Вс, 10:00–20:00</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Сделать выпадающее меню на клик (для мобильных устройств)
+    const dropdownBtn = document.getElementById('dropdownBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+
+    dropdownBtn.addEventListener('click', () => {
+      const isVisible = dropdownContent.style.display === 'block';
+      dropdownContent.style.display = isVisible ? 'none' : 'block';
+      dropdownBtn.classList.toggle('active', !isVisible);
+    });
+
+    // Закрывать меню при клике вне его
+    document.addEventListener('click', (e) => {
+      if (!dropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.style.display = 'none';
+        dropdownBtn.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
